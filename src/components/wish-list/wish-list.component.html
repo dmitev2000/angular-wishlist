@@ -1,0 +1,13 @@
+<div class="row">
+  <h3 class="my-4">{{ title }}</h3>
+
+  <div *ngIf="wishes.length === 0; else listItems">
+    <p class="text-muted">There are no wishes to display...</p>
+  </div>
+  <ng-template #listItems>
+    <ol class="wish-list mx-3">
+      <app-wish-list-item *ngFor="let wish of wishes" [wish]="wish">
+      </app-wish-list-item>
+    </ol>
+  </ng-template>
+</div>
