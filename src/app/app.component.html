@@ -1,5 +1,6 @@
 <div class="container py-5">
   <app-add-wish-form (addWish)="items.push($event)" />
   <app-filter-wishes [(filter)]="filter" />
-  <app-wish-list [wishes]="visibleItems" />
+  <app-loader *ngIf="loading" />
+  <app-wish-list *ngIf="!loading" [wishes]="visibleItems" />
 </div>

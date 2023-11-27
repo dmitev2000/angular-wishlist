@@ -5,11 +5,9 @@ import { WishItem } from '../../shared/models/wishitem';
 
 const filters = [
   (item: WishItem) => item,
-  (item: WishItem) => !item.isComplete,
-  (item: WishItem) => item.isComplete,
+  (item: WishItem) => !item.iscomplete,
+  (item: WishItem) => item.iscomplete,
 ];
-
-// ? VIDEO: 01:38:00
 
 @Component({
   selector: 'app-filter-wishes',

@@ -1,5 +1,7 @@
 export class WishItem {
-  constructor(public wishText: string, public isComplete: boolean = false) {
-
-  }
+  constructor(
+    public wishid: number,
+    public wishtext: string,
+    public iscomplete: boolean = false
+  ) {}
 }

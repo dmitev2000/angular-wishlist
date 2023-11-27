@@ -9,6 +9,7 @@ import { FilterWishesComponent } from '../components/filter-wishes/filter-wishes
 import { EventService } from '../shared/services/EventService';
 import { HttpClientModule } from '@angular/common/http';
 import { WishService } from '../shared/services/wish.service';
+import { LoaderComponent } from '../components/loader/loader.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { WishService } from '../shared/services/wish.service';
     WishListComponent,
     AddWishFormComponent,
     FilterWishesComponent,
+    LoaderComponent,
     HttpClientModule,
   ],
   templateUrl: './app.component.html',
@@ -29,6 +31,7 @@ import { WishService } from '../shared/services/wish.service';
 export class AppComponent implements OnInit {
   items: WishItem[] = [];
   filter: any = (item: WishItem) => item;
+  loading: boolean = true;
 
   constructor(events: EventService, private wishService: WishService) {
     events.listen('removeWish', (wish: WishItem) => {
@@ -43,8 +46,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.wishService.getWishes().subscribe((data: any) => {
-      this.items = data;
-    });
+    this.loading = true;
+
+    this.wishService.getWishes().subscribe(
+      (data: any) => {
+        console.log(data);
+        this.items = data;
+        this.loading = false;
+      }
+    );
   }
+
+  // ? VIDEO: 02:35:00
 }
